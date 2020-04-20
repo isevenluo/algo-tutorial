@@ -3,7 +3,8 @@ package org.luoxiaohei.java.queue;
 import java.util.Arrays;
 
 /**
- * @description: 队列跟栈非常相似，支持的操作也很有限，最基本的操作也是两个：入队 enqueue()，放一个数据到队列尾部；出队 dequeue()，从队列头部取一个元素。
+ * @description: 队列跟栈非常相似，支持的操作也很有限，最基本的操作也是两个：
+ * 入队 enqueue()，放一个数据到队列尾部；出队 dequeue()，从队列头部取一个元素。
  * @outhor: coderluo
  * @create: 2020-03-27 23:20
  */
