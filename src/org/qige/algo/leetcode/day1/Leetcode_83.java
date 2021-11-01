@@ -14,7 +14,7 @@ package org.qige.algo.leetcode.day1;
  * @author: 程序员七哥
  * @create: 2021-11-01 23:03
  **/
-public class Question_83 {
+public class Leetcode_83 {
 
     /**
      * 输入：head = [1,1,2,3,3]

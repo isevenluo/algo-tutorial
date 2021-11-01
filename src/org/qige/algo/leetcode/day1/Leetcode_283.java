@@ -10,7 +10,7 @@ import org.junit.Test;
  * 必须在原数组上操作，不能拷贝额外的数组。
  * 尽量减少操作次数。
  */
-public class Question_283 {
+public class Leetcode_283 {
 
     public void moveZeroes(int[] nums) {
         if (nums == null || nums.length == 0) {
