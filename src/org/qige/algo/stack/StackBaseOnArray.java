@@ -1,4 +1,4 @@
-package org.luoxiaohei.java.stack;
+package org.qige.algo.stack;
 
 import java.util.Arrays;
 

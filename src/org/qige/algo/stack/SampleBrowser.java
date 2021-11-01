@@ -1,4 +1,4 @@
-package org.luoxiaohei.java.stack;
+package org.qige.algo.stack;
 
 /**
  * @description: 使用前后栈实现浏览器的前进后退。

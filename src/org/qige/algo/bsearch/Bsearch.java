@@ -1,4 +1,4 @@
-package org.luoxiaohei.java.bsearch;
+package org.qige.algo.bsearch;
 
 /**
  * @description: 二分查找思想实现：直到找到要查找的元素，或者区间被缩小为 0

@@ -1,4 +1,4 @@
-package org.luoxiaohei.java.queue;
+package org.qige.algo.queue;
 
 /**
  * @description: 基于链表实现队列

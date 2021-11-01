@@ -1,4 +1,4 @@
-package org.luoxiaohei.java.linkedlist;
+package org.qige.algo.linkedlist;
 
 import java.util.List;
 

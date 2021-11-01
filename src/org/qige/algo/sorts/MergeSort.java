@@ -1,4 +1,4 @@
-package org.luoxiaohei.java.sorts;
+package org.qige.algo.sorts;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package org.luoxiaohei.java.sorts;
+package org.qige.algo.sorts;
 
 /**
  * @description: 插入排序

@@ -1,4 +1,4 @@
-package org.luoxiaohei.java.queue;
+package org.qige.algo.queue;
 
 import java.util.Arrays;
 
