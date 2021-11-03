@@ -20,7 +20,7 @@ public class Leetcode_303 {
      * @param nums
      */
     public Leetcode_303(int[] nums) {
-        // preSum[i] 记录 nums[0..i-1] 的累加和,所以数组长度要+1
+        // preSum[i] 记录 nums[0..i-1] 的累加和,要计算到最后一个值，所以前缀和数组长度要+1
         preSum = new int[nums.length+1];
         // 初始化前缀和数组
         for (int i = 1; i < preSum.length; i++) {
