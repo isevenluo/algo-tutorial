@@ -5,6 +5,7 @@ import org.junit.Test;
 /**
  * 回文串的判断
  * 回文串就是正着读和反着读都一样的字符串。
+ * 解法就是采用双指针从中轴展开遍历
  */
 public class Leetcode_5 {
 
