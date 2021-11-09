@@ -22,7 +22,7 @@ public class Leetcode_76 {
      * @param t
      * @return
      */
-    public String minWindow(String s, String t) {
+    public String forceResolve(String s, String t) {
         // 存储符合条件的字串长度和字串，用来取最短字串
         Map<Integer, String> map = new HashMap<>();
         for (int i = 0; i < s.length(); i++) {
@@ -66,6 +66,67 @@ public class Leetcode_76 {
         // 获取字串长度最短的key，拿到对应的字串
         Integer integer = map.keySet().stream().min(Integer::compareTo).orElse(0);
         return integer == 0 ? "" : map.get(integer);
+    }
+
+
+    /**
+     * 使用滑动窗口算法求解
+     * 先移动 right，再移动 left…… 直到 right 指针到达字符串 S 的末端，算法结束。
+     * 初始化 window 和 need 两个哈希表，记录窗口中的字符和需要凑齐的字符
+     * @param s
+     * @param t
+     * @return
+     */
+    public String minWindow(String s, String t) {
+        Map<Character,Integer> window = new HashMap<>();
+        Map<Character,Integer> need = new HashMap<>();
+        for (int i = 0; i < t.length(); i++) {
+             need.put(t.charAt(i),need.getOrDefault(t.charAt(i),0)+1);
+        }
+        // 存储满足 need 条件中字符的个数
+        int valid = 0;
+        // 左右指针来标记滑动窗口
+        int left = 0, right = 0;
+        // 记录最终窗口的起始位置和字符长度
+        int start = 0, len = Integer.MAX_VALUE;
+        while (right < s.length()) {
+            // 判断 valid 是否等于 need 需要的字符条件个数，等于就开始缩小窗口，不等于就继续扩大
+            // 初始化是一个左闭右开窗口，因此是空的，需要右移，获取需要加入窗口的字符
+            char r = s.charAt(right);
+            // 右移
+            right++;
+            // 如果字符是条件中需要的字符，则处理窗口中字符结果
+            if (need.containsKey(r)) {
+                window.put(r, window.getOrDefault(r, 0) + 1);
+                // 如果窗口中字符个数等于需要的个数，则给已满足条件的字符个数+1
+                if (window.get(r).equals(need.get(r))) {
+                    valid++;
+                }
+            }
+            // 如果窗口中已经满足所有需要的字符则开始缩小窗口
+            while (valid == need.size()) {
+                // 更新最小覆盖子串结果，只有比当前结果还短时才更新
+                if (right - left < len) {
+                    len = right - left;
+                    start = left;
+                }
+                // 开始缩小窗口
+                char l = s.charAt(left);
+                left++;
+                // 如果是条件需要的字符则需要处理结果和窗口字符个数
+                if (need.containsKey(l)) {
+                    // 如果窗口中字符和需要的一样多，缩小后就不再满足
+                    if (window.get(l).equals(need.get(l))) {
+                        valid--;
+                    }
+                    // 窗口中的字符减少
+                    window.put(l, window.get(l) - 1);
+                }
+            }
+        }
+        // 返回最小子串,如果长度还是 int 最大值说明没有满足条件的子串
+        return len == Integer.MAX_VALUE ? "" : s.substring(start, start + len);
+
     }
 
     @Test
