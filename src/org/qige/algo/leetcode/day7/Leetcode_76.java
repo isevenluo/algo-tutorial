@@ -25,20 +25,16 @@ public class Leetcode_76 {
     public String forceResolve(String s, String t) {
         // 存储符合条件的字串长度和字串，用来取最短字串
         Map<Integer, String> map = new HashMap<>();
+        // 用于统计t中的所有字符出现几次
+        Map<String,Integer> tMap = new HashMap<>();
+        for (int k = 0; k < t.length(); k++) {
+            // 因为有可能t中有相同的字符连续出现，因此不能简单遍历t中的字符判断是否包含，还需要判断出现的次数
+            tMap.put(t.charAt(k) + "", tMap.getOrDefault(t.charAt(k)+"",0)+1);
+        }
         for (int i = 0; i < s.length(); i++) {
             // 因为java中substring方法是含头不含尾，因此这里等于s.length()，不然无法取到最后一个字符
             for (int j = i + 1; j <= s.length(); j++) {
-                // 用于统计t中的所有字符出现几次
-                Map<String,Integer> tMap = new HashMap<>();
-                    String tmpResult = s.substring(i,j);
-                for (int k = 0; k < t.length(); k++) {
-                    // 因为有可能t中有相同的字符连续出现，因此不能简单遍历t中的字符判断是否包含，还需要判断出现的次数
-//                    if (!tmpResult.contains(t.charAt(k) + "")) {
-//                        // 中断本层循环，因为不包含t中的字符
-//                        break;
-//                    }
-                    tMap.put(t.charAt(k) + "", tMap.getOrDefault(t.charAt(k)+"",0)+1);
-                }
+                String tmpResult = s.substring(i,j);
                 // 是否包含所有t中字符的标志
                 AtomicBoolean flag = new AtomicBoolean(true);
                 tMap.keySet().stream().forEach(p -> {
@@ -132,9 +128,12 @@ public class Leetcode_76 {
     @Test
     public void test() {
         String s = "ADOBECODEBANC", t = "ABC";
+        System.out.println(forceResolve(s,t));
         System.out.println(minWindow(s,t));
         // 这个输出应该为空
         String s1 = "aaa", t1 = "aaaa";
+        System.out.println(forceResolve(s1,t1));
+
         System.out.println(minWindow(s1,t1));
     }
 
