@@ -2,6 +2,10 @@ package org.qige.algo.leetcode.day10;
 
 import org.junit.Test;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -18,17 +22,26 @@ import java.util.Stack;
 public class LeetCode_496 {
 
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
-        int[] res = new int[nums1.length];
-        // 单调栈
+        // 声明一个map用来存储 nums2 每个元素对应的右边第一个比它大的值,然后遍历nums1 的值当做key去获取即可
+        Map<Integer,Integer>  map = new HashMap<>();
+        // 单调栈，用来计算右边第一个比当前元素大的值,存储的是索引下标
         Stack<Integer> stack = new Stack();
-        for (int i = 0; i < nums1.length; i++) {
-            // 倒着往栈里放
-            while (!stack.isEmpty() && stack.peek() <= nums2[i]) {
-                // 比当前元素小的都删掉
-                stack.pop();
+        // 先利用单调栈找到nums2中每一个元素对应下一个比他大的值保存起来
+        for (int i = 0; i < nums2.length; i++) {
+            // 栈中存放的是还没有找到第一个比他大的值，找到了下一个比他大的值就出栈
+            while (!stack.isEmpty() && nums2[stack.peek()] < nums2[i]) {
+                // 找到了第一个比他大的右边元素就删除
+                int j = stack.pop();
+                map.put(nums2[j],nums2[i]);
             }
-            res[i] = stack.isEmpty() ? -1 : stack.peek();
-            stack.push(nums2[i]);
+            // 不大于栈顶元素就继续往右找，如果一直就没有找到map中就没有这个元素的key
+            stack.push(i);
+
+        }
+        // 结果数组
+        int[] res = new int[nums1.length];
+        for (int i = 0; i < nums1.length; i++) {
+            res[i] = map.getOrDefault(nums1[i],-1);
         }
         return res;
     }
@@ -41,6 +54,6 @@ public class LeetCode_496 {
     public void test() {
         int[] nums1 = new int[]{4, 1, 2};
         int[] nums2 = new int[]{1, 3, 4, 2};
-        System.out.println(nextGreaterElement(nums1, nums2));
+        System.out.println(Arrays.toString(nextGreaterElement(nums1, nums2)));
     }
 }
