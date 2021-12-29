@@ -21,6 +21,7 @@ import java.util.Stack;
  **/
 public class LeetCode_496 {
 
+
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
         // 声明一个map用来存储 nums2 每个元素对应的右边第一个比它大的值,然后遍历nums1 的值当做key去获取即可
         Map<Integer,Integer>  map = new HashMap<>();
@@ -45,6 +46,7 @@ public class LeetCode_496 {
         }
         return res;
     }
+
 
     /**
      * 输入: nums1 = [4,1,2], nums2 = [1,3,4,2].
