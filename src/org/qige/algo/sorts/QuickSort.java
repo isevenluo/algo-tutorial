@@ -36,7 +36,7 @@ public class QuickSort {
     private static int partition(int[] a, int p, int r) {
         // 取分区最后一个元素作为分区点
         int pivot = a[r];
-        // 游标i将需要排序的数组分为两部分，左边小于pivot，左右大于pivot
+        // 游标i将需要排序的数组分为两部分，左边小于pivot，右大于pivot
         int i = p;
         // 这里不需要比较最后一个元素，因为其值是pivot，最后放到i的位置，即分区的中心，左边小于于它，右边大于它
         for (int j = p; j <= r-1; ++j) {
